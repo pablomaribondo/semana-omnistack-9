@@ -1,9 +1,12 @@
 import { useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import api from "../../services/api";
 
 const Login = () => {
   const [email, setEmail] = useState("");
+
+  const history = useHistory();
 
   const submitHandler = async event => {
     event.preventDefault();
@@ -13,6 +16,8 @@ const Login = () => {
     const { _id } = response.data;
 
     localStorage.setItem("user", _id);
+
+    history.push("/dashboard");
   };
 
   return (
